@@ -1,5 +1,5 @@
-"""Home Gui version 1
-19/05/2022
+"""Home Gui version 2
+20/05/2022
 By Caleb Giddy"""
 
 from tkinter import *

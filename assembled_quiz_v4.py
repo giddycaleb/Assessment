@@ -1,7 +1,8 @@
-"""Assembled Quiz Version 3
-Incorporates the quiz gui, export gui and main home Gui and adds a new results gui
-also incorporates user feedback and adds says māori instead of maori to be culturally appropriate.
-4/06/2022
+"""Assembled Quiz Version 4
+Incorporates the quiz gui, export gui and main home Gui
+and includes results gui
+Uses PEP8 checker to make sure everything is up to scratch
+5/06/2022
 By Caleb Giddy"""
 
 from tkinter import *
@@ -22,7 +23,8 @@ class Home:
         total_score = 0
         quiz_questions = [["tamaki makau rau", "tāmaki makau rau", "auckland"],
                           ["otautahi", "ōtautahi", "christchurch"],
-                          ["te whanganui a tara", "te whanganui a tara", "wellington"],
+                          ["te whanganui a tara", "te whanganui a tara",
+                          "wellington"],
                           ["whakatu", "whakatū", "nelson"],
                           ["otepoti", "о̄tepoti", "dunedin"],
                           ["aotearoa", "aotearoa", "new zealand"],
@@ -45,9 +47,12 @@ class Home:
 
         # instructions label (row 1)
         self.home_instructions_label = Label(self.home_frame,
-                                             text="Welcome to the Te Reo Māori Quiz",
-                                             font="Arial 10 italic", wraplength=200,
-                                             justify=CENTER, bg=background_colour,
+                                             text="Welcome to the"
+                                             " Te Reo Māori Quiz",
+                                             font="Arial 10 italic",
+                                             wraplength=200,
+                                             justify=CENTER,
+                                             bg=background_colour,
                                              padx=10, pady=10, )
         self.home_instructions_label.grid(row=1, sticky=EW)
         # quiz button and instructions (row 2)
@@ -57,10 +62,13 @@ class Home:
         self.quiz_button.grid(row=2, sticky=W, column=0)
 
         self.quiz_instructions_label = Label(self.home_frame,
-                                             text="Press this button to partake in the quiz",
+                                             text="Press"
+                                             " this button to partake"
+                                             "in the quiz",
                                              wraplength=120,
                                              font="Arial 10 italic",
-                                             justify=LEFT, bg=background_colour,
+                                             justify=LEFT,
+                                             bg=background_colour,
                                              padx=20, pady=10)
         self.quiz_instructions_label.grid(row=2, sticky=E, column=0)
         # export button and instructions (row 3)
@@ -70,23 +78,29 @@ class Home:
         self.export_button.grid(row=3, sticky=W, column=0)
 
         self.export_instructions_label = Label(self.home_frame,
-                                               text="Press this button to export the answers for revision",
+                                               text="Press"
+                                               " this button to export"
+                                               "the answers for revision",
                                                wraplength=120,
                                                font="Arial 10 italic",
-                                               justify=LEFT, bg=background_colour,
+                                               justify=LEFT,
+                                               bg=background_colour,
                                                padx=20, pady=10)
         self.export_instructions_label.grid(row=3, sticky=E, column=0)
         # results button and instructions (row=4)
         self.results_button = Button(self.home_frame, font="Arial 12 bold",
                                      text="Results", width=10,
-                                     command=lambda: self.results(score, rounds, best_score, total_score))
+                                     command=lambda: self.results(score,
+                                            rounds, best_score, total_score))
         self.results_button.grid(row=4, sticky=W, column=0)
 
         self.results_instructions_label = Label(self.home_frame,
-                                                text="Press this button to see your previous results",
+                                                text="Press this button to see"
+                                                "your previous results",
                                                 wraplength=120,
                                                 font="Arial 10 italic",
-                                                justify=LEFT, bg=background_colour,
+                                                justify=LEFT,
+                                                bg=background_colour,
                                                 padx=20, pady=10)
         self.results_instructions_label.grid(row=4, sticky=E, column=0)
 
@@ -122,22 +136,26 @@ class Results:
         self.results_frame.grid()
 
         # Set up results heading (row 0)
-        self.results_heading = Label(self.results_frame, text="Export instructions",
+        self.results_heading = Label(self.results_frame,
+        text="Export instructions",
                                      font="arial 10 bold", bg=background)
         self.results_heading.grid(row=0)
         total_score = round(total_score, 2)
         # Export text (label, row 1)
         if rounds != 0:
             average_score = total_score / rounds
-            average_score = round(average_score,2)
+            average_score = round(average_score, 2)
         else:
             average_score = 0
         self.results_text = Label(self.results_frame,
-                                  text="BELOW ARE THE RESULTS FOR THE QUIZZES YOU HAVE COMPLETED\n"
+                                  text="BELOW ARE THE RESULTS FOR THE QUIZZES"
+                                  "YOU HAVE COMPLETED\n"
                                        "BEST SCORE: {}\n"
                                        "AVERAGE SCORE: {}\n"
-                                       "LATEST SCORE: {}\n".format(best_score, average_score, score),
-                                  justify=LEFT, width=40, bg=background, wraplength=250)
+                                       "LATEST SCORE: {}\n".format(best_score,
+                                       average_score, score),
+                                  justify=LEFT, width=40, bg=background,
+                                  wraplength=250)
         self.results_text.grid(row=2, pady=10)
 
     def close_results(self, partner):
@@ -157,7 +175,8 @@ class Export:
         # Sets up child window (export box)
         self.export_box = Toplevel()
 
-        # If users press cross at top, closes export and 'releases' export button
+        # If users press cross at top, closes export and
+        #'releases' export button
         self.export_box.protocol('WM_DELETE_WINDOW',
                                  partial(self.close_export, partner))
 
@@ -166,7 +185,8 @@ class Export:
         self.export_frame.grid()
 
         # Set up export heading (row 0)
-        self.export_heading = Label(self.export_frame, text="Export instructions",
+        self.export_heading = Label(self.export_frame,
+        text="Export instructions",
                                     font="arial 10 bold", bg=background)
         self.export_heading.grid(row=0)
 
@@ -175,14 +195,16 @@ class Export:
                                  text="Enter a file name in the box below and "
                                       "press the save button to save the Māori"
                                       "names to a file for revision",
-                                 justify=LEFT, width=40, bg=background, wraplength=250)
+                                 justify=LEFT, width=40, bg=background,
+                                 wraplength=250)
         self.export_text.grid(row=2, pady=10)
 
         # Warning text (label, row 1)
         self.export_text = Label(self.export_frame,
                                  text="If the file name you enter below "
                                       "already exists, it's content will"
-                                      "be replaced with the answers for revision"
+                                      "be replaced with the"
+                                      "answers for revision"
                                       "purposes",
                                  justify=LEFT, font="Arial 10 italic",
                                  bg="#ffafaf",  # Pink
@@ -190,7 +212,8 @@ class Export:
         self.export_text.grid(row=1)
 
         # Filename entry box (row 3)
-        self.filename_entry = Entry(self.export_frame, width=20, font="Arial 14 bold",
+        self.filename_entry = Entry(self.export_frame, width=20,
+        font="Arial 14 bold",
                                     justify=CENTER)
         self.filename_entry.grid(row=3, pady=10)
 
@@ -205,7 +228,8 @@ class Export:
 
         # Save and cancel buttons (row 0 of save_cancel_frame)
         self.save_button = Button(self.save_cancel_frame, text="Save",
-                                  command=partial(lambda: self.save_answers(partner)))
+                                  command=partial(lambda: self.save_answers(
+                                      partner)))
         self.save_button.grid(row=0, column=0)
 
         self.cancel_button = Button(self.save_cancel_frame, text="Cancel",
@@ -228,7 +252,8 @@ class Export:
 
         for letter in filename:
             if re.match(valid_char, letter):
-                continue  # If the letter is valid, goes back and checks the next
+                continue     # If the letter is valid,
+                                #goes back and checks the next
 
             elif letter == " ":  # Otherwise, find problems
                 problem = "(no spaces allowed)"
@@ -254,22 +279,28 @@ class Export:
             # create file to hold data
             f = open(filename, "w+")
 
-            quiz_questions = [["tamaki makau rau", "tāmaki makau rau", "auckland"],
+            quiz_questions = [["tamaki makau rau", "tāmaki makau rau",
+            "auckland"],
                               ["otautahi", "ōtautahi", "christchurch"],
-                              ["te whanganui a tara", "te whanganui a tara", "wellington"],
+                              ["te whanganui a tara", "te whanganui a tara",
+                              "wellington"],
                               ["whakatu", "whakatū", "nelson"],
                               ["otepoti", "о̄tepoti", "dunedin"],
                               ["aotearoa", "aotearoa", "new zealand"],
-                              ["te waipounamu", "te waipounamu", "south island"],
-                              ["te ika a maui", "te ika a māui", "north island"],
+                              ["te waipounamu", "te waipounamu",
+                              "south island"],
+                              ["te ika a maui", "te ika a māui",
+                              "north island"],
                               ["waihopai", "waihōpai", "invercargil"],
                               ["ngamotu", "ngāmotu", "new plymouth"]]
 
             # add new line at end of each item
             for item in quiz_questions:
-                ans = "{} is Maori For {}".format(item[0].title(), item[2].title())
+                ans = "{} is Maori For {}".format(item[0].title(),
+                item[2].title())
                 f.write(ans + "\n")
-            macron_note = "Please Note that there are no macrons as python is unable to export macrons to .txt files"
+            macron_note = "Please Note that there are no macrons as"
+            "python is unable to export macrons to .txt files"
             f.write("\n" + macron_note)
             # close file
             f.close()
@@ -288,7 +319,8 @@ class Quiz:
         # Sets up child window (export box)
         self.quiz_box = Toplevel()
 
-        # If users press cross at top, closes export and 'releases' export button
+        # If users press cross at top, closes export and 'releases'
+        # export button
         self.quiz_box.protocol('WM_DELETE_WINDOW',
                                partial(self.close_quiz, partner))
 
@@ -310,7 +342,9 @@ class Quiz:
                 # Give results when quiz is over
                 if num_in_list == 10:
                     self.question_label.configure(text="The Quiz is over\n"
-                                                       "you got a total of {} out of 10".format(correct))
+                                                       "you got a total of {}"
+                                                       "out of 10".format(
+                                                           correct))
 
                     def close_quiz():
                         global score
@@ -334,11 +368,16 @@ class Quiz:
                     num_in_list += 1
 
                     eng_or_māori = random.randint(1, 2)
-                    # randomises whether the question is asking for the māori or english word
+                    # randomises whether the question is
+                    #asking for the māori or english word
                     if eng_or_māori == 1:
-                        self.question_label.configure(text="What is the English Word for {}".format(place[1].title()))
+                        self.question_label.configure(text=
+                        "What is the English Word for {}".format(
+                            place[1].title()))
                     else:
-                        self.question_label.configure(text="What is the Māori Word for {}".format(place[2].title()))
+                        self.question_label.configure(text=
+                        "What is the Māori Word for {}".format(
+                            place[2].title()))
                 break
 
         # function for the submit button
@@ -352,7 +391,8 @@ class Quiz:
                 self.submit_button.config(state=DISABLED)
 
                 global correct
-                # if question is correct the box goes green for two seconds and add 1 to the correct total
+                #if question is correct the box goes green for
+                #two seconds and add 1 to the correct total
                 # otherwise box goes red for two seconds
                 if eng_or_māori == 1:
                     if guess.lower() == place[2]:
@@ -362,7 +402,8 @@ class Quiz:
 
                     else:
                         self.question_entry.config(bg="red")
-                        self.correct_answer.config(text="The correct answer was {}".format(place[2].title()))
+                        self.correct_answer.config(text=
+                        "The correct answer was {}".format(place[2].title()))
                         self.question_entry.after(2000, question)
                 else:
                     if guess.lower() == place[1] or guess.lower() == place[0]:
@@ -372,14 +413,16 @@ class Quiz:
                     else:
 
                         self.question_entry.config(bg="red")
-                        self.correct_answer.config(text="The correct answer was {}".format(place[1].title()))
+                        self.correct_answer.config(text="The correct answer"
+                                        " was {}".format(place[1].title()))
                         self.question_entry.after(2000, question)
             else:
                 self.correct_answer.config(text="Sorry it cannot be blank")
 
         background_colour = "light green"
         # setting frame for main gui
-        self.quiz_frame = Frame(self.quiz_box, bg=background_colour, pady=10, padx=10)
+        self.quiz_frame = Frame(self.quiz_box, bg=background_colour,
+        pady=10, padx=10)
         self.quiz_frame.pack(fill=BOTH, expand=YES)
 
         # heading label (row 0)
@@ -391,10 +434,15 @@ class Quiz:
 
         # instructions label (row 1)
         self.quiz_instructions_label = Label(self.quiz_frame,
-                                             text="Please enter the answer in the box with a space in between words\n"
-                                                  "'-' and '_' will not be accepted",
-                                             font="Arial 10 italic", wraplength=200,
-                                             justify=CENTER, bg=background_colour,
+                                             text="Please enter the answer in "
+                                             "the box with a space in between"
+                                             "words\n"
+                                                  "'-' and '_' will not be"
+                                                  "accepted",
+                                             font="Arial 10 italic",
+                                             wraplength=200,
+                                             justify=CENTER,
+                                             bg=background_colour,
                                              padx=10, pady=10)
         self.quiz_instructions_label.grid(row=1, sticky=EW)
         # question label (row 2)
@@ -424,7 +472,8 @@ class Quiz:
 
         self.correct_answer = Label(self.quiz_frame,
                                     font="Arial 10 bold",
-                                    text="", justify=LEFT, bg=background_colour)
+                                    text="", justify=LEFT,
+                                    bg=background_colour)
         self.correct_answer.grid(row=6, sticky=EW, column=0)
 
         question()
